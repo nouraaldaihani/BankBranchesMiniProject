@@ -1,0 +1,43 @@
+﻿@model List<BankBranch>
+
+<h2> KFH Branches</h2> 
+
+<div class="add-button">
+    
+    <a href ="/BankBranch/create/"> 
+        
+        <button> Create New Branch</button>
+    </a></div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>id</th>
+
+
+            <th>LocationName</th>
+            <th>BranchManager</th>
+            <th>EmployeeCount</th>
+            <th>LocationURL</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var b in Model)
+        {
+            <tr>
+                <td>
+                   
+                    <a href="/BankBranch/Details/@b.Id">@b.Id</a>
+                </td>
+
+                <td>@b.LocationName</td>
+                <td>@b.BranchManager</td>
+                <td>@b.EmployeeCount</td>
+                <td>
+                    <a href="@b.LocationURL" target="_blank">Map</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

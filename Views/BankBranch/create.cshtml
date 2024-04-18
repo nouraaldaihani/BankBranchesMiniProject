@@ -1,0 +1,10 @@
+﻿<h2>Create New Branch</h2>
+@model NewBranchForm 
+@using (Html.BeginForm("Create", "BankBranch", FormMethod.Post))
+{
+    <form>
+
+        @Html.EditorForModel()
+        <button type="submut" class=" btn btn-primary">Submit</button>
+    </form>
+}
