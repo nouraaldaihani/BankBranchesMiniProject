@@ -1,0 +1,19 @@
+﻿<h2>Create New Branch</h2>
+@model EditBranchForm
+
+<div style="width: 50%; margin: auto;">
+    
+    <h2>Edit New Branch</h2>
+
+    @using (Html.BeginForm("Edit", "BankBranch", FormMethod.Post))
+    {
+        <div style="float: left; width: 70%;">
+            <!-- Adjust width as needed -->
+            @Html.EditorForModel()
+        </div>
+
+        <div style="float: right;">
+            <!-- Align button to the right -->
+            <button type="edit" class="btn btn-primary">Edit</button> <!-- Simplified button -->
+        </div>
+    }

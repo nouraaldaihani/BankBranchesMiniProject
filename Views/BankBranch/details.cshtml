@@ -1,23 +1,122 @@
 ﻿@model BankBranch
-<h1>Branch Details</h1>
-<table class="table">
-<tr><th>Name</th>
-    <td>@Model.LocationName</td>
-    </tr>
 
-    <tr>
-        <th>Branch Manager</th>
-        <td>@Model.BranchManager</td>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Branch Details</title>
+    <style>
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; 
+            color: #212529; 
+            margin: 0;
+            padding: 0;
+        }
 
-    </tr>
+        h1, h2 {
+            color: #007bff; 
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
 
-    <tr>
-        <th>Employee Count</th>
-        <td>@Model.EmployeeCount</td></tr>
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
 
+            .table th, .table td {
+                border: 1px solid #dee2e6;
+                padding: 10px;
+            }
 
-    <tr>
-        <th>Location URL</th>
-        <td>@Model.LocationURL</td>
-    </tr>
-</table>
+            .table th {
+                background-color: #007bff; 
+                color: #fff;
+                text-align: left;
+            }
+
+            .table tbody tr:nth-child(even) {
+                background-color: #fff; 
+            }
+
+            .table a {
+                color: #007bff; 
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+
+                .table a:hover {
+                    color: #0056b3; 
+                }
+
+        .add-employee-link {
+            margin-top: 20px;
+        }
+
+            .add-employee-link a {
+                display: inline-block;
+                background-color: #28a745; 
+                color: #fff;
+                padding: 10px 20px;
+                border-radius: 5px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
+
+                .add-employee-link a:hover {
+                    background-color: #218838; 
+                }
+    </style>
+</head>
+<body>
+    <h1>Branch Details</h1>
+    <table class="table">
+        <div class="add-employee-link">
+            <a href="/BankBranch/AddEmployee/@Model.Id">Add Employee</a>
+        </div>
+        <tr>
+            <th>Name</th>
+            <td>@Model.LocationName</td>
+        </tr>
+        <tr>
+            <th>Branch Manager</th>
+            <td>@Model.BranchManager</td>
+        </tr>
+        <tr>
+            <th>Employee Count</th>
+            <td>@Model.EmployeeCount</td>
+        </tr>
+        <tr>
+            <th>Location URL</th>
+            <td>@Model.LocationURL</td>
+        </tr>
+    </table>
+
+    <h2>Add Employee</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Position</th>
+                <th>Civil ID</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var employee in Model.Employees)
+            {
+                <tr>
+                    <td>@employee.Name</td>
+                    <td>@employee.Position</td>
+                    <td>@employee.CivilId</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+  
+</body>
+</html>

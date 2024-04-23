@@ -1,43 +1,144 @@
-﻿@model List<BankBranch>
+﻿
+@model BankDashboardViewModel
+<div class="row">
+   <div class="col-md-3">
+      <div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Total Branches</h5>
+        <p class="card-text">@Model.BranchList.Count()</p>
+    </div>
+</div>
+   <div class="col-md-3">
+     <div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Total Employee</h5>
+        <p class="card-text">@Model.TotalEmployees</p>
+    </div>
+</div>
 
-<h2> KFH Branches</h2> 
 
-<div class="add-button">
-    
-    <a href ="/BankBranch/create/"> 
-        
-        <button> Create New Branch</button>
-    </a></div>
-
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>id</th>
-
-
-            <th>LocationName</th>
-            <th>BranchManager</th>
-            <th>EmployeeCount</th>
-            <th>LocationURL</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var b in Model)
-        {
-            <tr>
-                <td>
-                   
-                    <a href="/BankBranch/Details/@b.Id">@b.Id</a>
-                </td>
-
-                <td>@b.LocationName</td>
-                <td>@b.BranchManager</td>
-                <td>@b.EmployeeCount</td>
-                <td>
-                    <a href="@b.LocationURL" target="_blank">Map</a>
-                </td>
-            </tr>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KFH Branches</title>
+    <style>
+       
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
         }
-    </tbody>
-</table>
+
+        h2 {
+            color: #007bff; 
+        }
+
+        .add-button {
+            margin-bottom: 20px;
+        }
+
+            .add-button button {
+                background-color: #28a745; 
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+
+                .add-button button:hover {
+                    background-color: #218838; 
+                }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+            .table th, .table td {
+                border: 1px solid #dee2e6;
+                padding: 8px;
+            }
+
+            .table th {
+                background-color: #007bff;
+                color: #fff;
+                text-align: left;
+            }
+
+            .table tbody tr:nth-child(even) {
+                background-color: #f8f9fa; 
+            }
+
+            .table tbody tr:hover {
+                background-color: #e9ecef;
+            }
+
+            .table a {
+                color: #007bff; 
+                text-decoration: none;
+            }
+
+                .table a:hover {
+                    text-decoration: underline;
+                }
+
+        .edit-button {
+            text-align: center;
+        }
+
+            .edit-button a {
+                display: inline-block;
+                background-color: #ffc107; 
+                color: #212529;
+                padding: 6px 12px;
+                border-radius: 5px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+            }
+
+                .edit-button a:hover {
+                    background-color: #e0a800; 
+                }
+    </style>
+</head>
+<body>
+    <h2>KFH Branches</h2>
+
+    <div class="add-button">
+        <a href="/BankBranch/create/">
+            <button>Create New Branch</button>
+        </a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Location Name</th>
+                <th>Branch Manager</th>
+                <th>Employee Count</th>
+                <th>Location URL</th>
+                <th>Edit</th> 
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var b in Model.BranchList)
+            {
+                <tr>
+                    <td><a href="/BankBranch/Details/@b.Id">@b.Id</a></td>
+                    <td>@b.LocationName</td>
+                    <td>@b.BranchManager</td>
+                    <td>@b.EmployeeCount</td>
+                    <td><a href="@b.LocationURL" target="_blank">Map</a></td>
+                    <td class="edit-button"><a href="/BankBranch/Edit/@b.Id">Edit</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>
+
